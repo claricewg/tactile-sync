@@ -1,14 +1,12 @@
 """
 Generate synthetic sensor + video-frame data that mimics a real capture session.
 
-This lets you develop and test the whole pipeline BEFORE recording anything real.
-It deliberately bakes in the two problems you'll face with real data:
+Resolves:
   1. Different sample rates (sensor ~200 Hz, video ~30 fps)
   2. A time offset between the two streams (they start at different moments)
 
 Each "action" is a labeled segment with a characteristic accelerometer signature.
-A sharp tap at the very start produces a spike in BOTH streams -- that's your
-sync marker, exactly like clapping at the start of a real recording.
+A sharp tap at the very start produces a spike in BOTH streams -- sync marker.
 """
 
 import numpy as np

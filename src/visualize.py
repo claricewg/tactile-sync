@@ -1,7 +1,5 @@
 """
 Plot the aligned streams to sanity-check synchronization by eye.
-
-The single most useful habit in sensor work: look at your data before you trust it.
 If the tap spikes in both streams line up after alignment, the sync worked.
 """
 

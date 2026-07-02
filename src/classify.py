@@ -1,13 +1,5 @@
 """
 Classify the action from the FUSED (vision + sensor) signal.
-
-This closes the loop: raw multimodal capture -> aligned data -> a working model.
-We slice the aligned stream into short windows, compute simple features over each
-window, and train a random forest to predict the action label.
-
-The point isn't a fancy model -- it's showing the fused data is usable end to end.
-A useful experiment to report: accuracy with sensor-only features vs. sensor+video
-features, which demonstrates *why* the extra modality matters (6thSense's whole thesis).
 """
 
 import numpy as np
@@ -65,6 +57,6 @@ def run(use_video: bool = True, seed: int = 0):
 
 
 if __name__ == "__main__":
-    print("Comparing modalities (the experiment that proves the thesis):")
+    print("Comparing modalities:")
     run(use_video=False)
     run(use_video=True)

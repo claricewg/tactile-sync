@@ -1,10 +1,6 @@
 """
 Synchronize two sensor streams recorded at different rates with an unknown offset.
 
-This is the heart of the project and the part that maps directly to 6thSense's
-bottleneck: vision and touch arrive on different clocks and have to be aligned
-before they're useful.
-
 Pipeline:
   1. Detect the sync marker (the tap) in each stream as its largest early spike.
   2. Compute the offset between the two detected spikes.
