@@ -16,7 +16,6 @@ ACTIONS = ["stack", "flip", "screw"]
 SENSOR_HZ = 200
 VIDEO_FPS = 30
 
-
 def _action_signal(action: str, n: int, rng: np.random.Generator) -> np.ndarray:
     """Return an accelerometer-magnitude signal characteristic of each action."""
     t = np.linspace(0, 1, n)
@@ -33,7 +32,6 @@ def _action_signal(action: str, n: int, rng: np.random.Generator) -> np.ndarray:
         sig = 2.5 * np.sin(2 * np.pi * 6 * t) ** 2
     sig += rng.normal(0, 0.3, n)  # sensor noise
     return sig + 9.81  # gravity baseline
-
 
 def generate(seed: int = 0, offset_s: float = 1.37):
     """
@@ -95,7 +93,6 @@ def generate(seed: int = 0, offset_s: float = 1.37):
     )
 
     return sensor_df, video_df, offset_s
-
 
 if __name__ == "__main__":
     sensor_df, video_df, offset = generate()

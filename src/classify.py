@@ -12,7 +12,6 @@ WINDOW_S = 0.5
 STEP_S = 0.25
 ACTION_LABELS = {"stack", "flip", "screw"}
 
-
 def make_windows(merged: pd.DataFrame, use_video: bool = True):
     """Slice into overlapping windows; keep windows that are mostly one action."""
     t = merged["t"].values
@@ -40,7 +39,6 @@ def make_windows(merged: pd.DataFrame, use_video: bool = True):
         labels.append(lab)
     return np.array(feats), np.array(labels)
 
-
 def run(use_video: bool = True, seed: int = 0):
     merged = pd.read_csv("data/processed/merged.csv")
     X, y = make_windows(merged, use_video=use_video)
@@ -54,7 +52,6 @@ def run(use_video: bool = True, seed: int = 0):
     tag = "sensor+video" if use_video else "sensor-only"
     print(f"[{tag}] test accuracy: {acc:.1%}  (n_windows={len(y)})")
     return acc
-
 
 if __name__ == "__main__":
     print("Comparing modalities:")

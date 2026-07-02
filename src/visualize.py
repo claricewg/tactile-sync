@@ -10,7 +10,6 @@ import pandas as pd
 
 from synchronize import estimate_offset
 
-
 def plot_alignment(sensor_df, video_df, merged, offset, out_path="figures/alignment.png"):
     fig, axes = plt.subplots(2, 1, figsize=(12, 7), sharex=True)
 
@@ -32,7 +31,6 @@ def plot_alignment(sensor_df, video_df, merged, offset, out_path="figures/alignm
     fig.tight_layout()
     fig.savefig(out_path, dpi=120)
     print(f"Saved {out_path}")
-
 
 if __name__ == "__main__":
     sensor_df = pd.read_csv("data/raw/sensor.csv")

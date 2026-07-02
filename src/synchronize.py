@@ -11,11 +11,10 @@ Pipeline:
 import numpy as np
 import pandas as pd
 
-
 def detect_sync_spike(t: np.ndarray, signal: np.ndarray, search_window_s: float = 3.0) -> float:
     """
     Return the timestamp of the sync tap: the largest spike within the first
-    `search_window_s` seconds. We search only the start so a big mid-recording
+    `search_window_s` seconds. Search only the start so a big mid-recording
     impact can't be mistaken for the marker.
     """
     t = np.asarray(t)
@@ -23,7 +22,6 @@ def detect_sync_spike(t: np.ndarray, signal: np.ndarray, search_window_s: float 
     mask = t <= (t[0] + search_window_s)
     idx = np.argmax(signal[mask])
     return float(t[mask][idx])
-
 
 def estimate_offset(sensor_df: pd.DataFrame, video_df: pd.DataFrame) -> float:
     """
@@ -33,7 +31,6 @@ def estimate_offset(sensor_df: pd.DataFrame, video_df: pd.DataFrame) -> float:
     s_tap = detect_sync_spike(sensor_df["t_sensor"].values, sensor_df["accel_mag"].values)
     v_tap = detect_sync_spike(video_df["t_video"].values, video_df["motion_proxy"].values)
     return v_tap - s_tap
-
 
 def synchronize(sensor_df: pd.DataFrame, video_df: pd.DataFrame, tolerance_s: float = 0.02) -> pd.DataFrame:
     """
@@ -64,7 +61,6 @@ def synchronize(sensor_df: pd.DataFrame, video_df: pd.DataFrame, tolerance_s: fl
         tolerance=tolerance_s,
     )
     return merged, offset
-
 
 if __name__ == "__main__":
     sensor_df = pd.read_csv("data/raw/sensor.csv")
